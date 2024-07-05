@@ -3,8 +3,9 @@ FROM apache/spark-py:v3.4.0
 # Switch to root to copy files and set permissions
 USER root
 
-# Create a non-root user and group
-RUN groupadd -r spark && useradd -r -g spark spark
+# Create a user and group with specific UID and GID
+RUN groupadd -g 1001 sparkgroup && \
+    useradd -r -u 1001 -g sparkgroup sparkuser
 
 # Create necessary directories and copy configuration files
 RUN mkdir -p /opt/spark/conf /opt/spark/jars
@@ -22,7 +23,7 @@ RUN curl -fSL "$AZURE_STORAGE_BLOB_URL" -o /opt/spark/jars/azure-storage-blob-12
     || { echo 'Failed to download JAR files'; exit 1; }
 
 # Change ownership of directories to non-root user
-RUN chown -R spark:spark /opt/spark
+RUN chown -R sparkuser:sparkgroup /opt/spark
 
 # Switch to non-root user
-USER spark
+USER sparkuser

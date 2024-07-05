@@ -9,7 +9,7 @@ public class ThriftClient {
         final String containerName = "demo";
 
         // Set Hadoop user; this must match the name set in runthriftserver.cmd
-        System.setProperty("HADOOP_USER_NAME", "spark");
+        System.setProperty("HADOOP_USER_NAME", "sparkuser");
 
         // Get the storage account name from the environment variable
         String storageAccountName = System.getenv("AZURE_STORAGE_ACCOUNT_NAME");
