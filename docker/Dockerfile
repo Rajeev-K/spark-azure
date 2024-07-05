@@ -1,4 +1,4 @@
-FROM apache/spark-py
+FROM apache/spark-py:v3.4.0
 
 # Switch to root to copy files and set permissions
 USER root
