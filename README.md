@@ -22,7 +22,7 @@ select * from sales;
 
 Prepare `spark-defaults.conf` and update it with the right Azure Storage account name and access key, then run `runkyuubi.cmd`.
 
-You can beeline to run queries:
+You can use beeline to run queries:
 
 ```
 /opt/spark/bin/beeline -u 'jdbc:hive2://172.17.0.2:10009/;user=sparkuser'
