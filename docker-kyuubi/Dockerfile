@@ -1,4 +1,8 @@
+# The base image must be built first, see ../docker-spark
 FROM spark-azure
+
+# Versions
+ENV KYUUBI_VERSION=1.9.1
 
 # Switch to root to copy files and set permissions
 USER root
@@ -6,7 +10,7 @@ USER root
 # kyuubi
 
 ENV KYUUBI_HOME=/opt/kyuubi
-ENV KYUUBI_DOWNLOAD_URL=https://dlcdn.apache.org/kyuubi/kyuubi-1.9.1/apache-kyuubi-1.9.1-bin.tgz
+ENV KYUUBI_DOWNLOAD_URL=https://dlcdn.apache.org/kyuubi/kyuubi-${KYUUBI_VERSION}/apache-kyuubi-${KYUUBI_VERSION}-bin.tgz
 
 RUN mkdir -p ${KYUUBI_HOME} \
     && curl -fSL ${KYUUBI_DOWNLOAD_URL} -o /tmp/kyuubi.tar.gz \
