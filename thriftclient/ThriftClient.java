@@ -4,12 +4,14 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.ResultSetMetaData;
 
+// This code works for Thrift as well as Kyuubi
+
 public class ThriftClient {
     public static void main(String[] args) {
         final String containerName = "demo";
 
         // Set Hadoop user; this must match the name set in runthriftserver.cmd
-        System.setProperty("HADOOP_USER_NAME", "sparkuser");
+        // System.setProperty("HADOOP_USER_NAME", "sparkuser"); // Only needed for Thrift
 
         // Get the storage account name from the environment variable
         String storageAccountName = System.getenv("AZURE_STORAGE_ACCOUNT_NAME");
@@ -18,8 +20,9 @@ public class ThriftClient {
             return;
         }
 
-        // JDBC URL for the Spark Thrift Server
-        String jdbcUrl = "jdbc:hive2://localhost:10000/default";
+        // JDBC URL
+        // String jdbcUrl = "jdbc:hive2://localhost:10000/default"; // This is for Thrift
+        String jdbcUrl = "jdbc:hive2://localhost:10009/;user=sparkuser"; // This is for Kyuubi
 
         // JDBC credentials (if needed)
         String user = "";
