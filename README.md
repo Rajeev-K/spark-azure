@@ -20,7 +20,7 @@ select * from sales;
 
 ## kyuubi
 
-Prepare `spark-defaults.conf` and update it with the right Azure Storage account name and access key, then run `runkyuubi.cmd`.
+Copy `spark-defaults-template.conf` to `spark-defaults.conf` and update it with the right Azure Storage account name and access key, then run `runkyuubi.cmd`.
 
 You can use beeline to run queries:
 
