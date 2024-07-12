@@ -10,9 +10,6 @@ public class ThriftClient {
     public static void main(String[] args) {
         final String containerName = "demo";
 
-        // Set Hadoop user; this must match the name set in runthriftserver.cmd
-        // System.setProperty("HADOOP_USER_NAME", "sparkuser"); // Only needed for Thrift
-
         // Get the storage account name from the environment variable
         String storageAccountName = System.getenv("AZURE_STORAGE_ACCOUNT_NAME");
         if (storageAccountName == null || storageAccountName.isEmpty()) {
@@ -21,8 +18,8 @@ public class ThriftClient {
         }
 
         // JDBC URL
-        // String jdbcUrl = "jdbc:hive2://localhost:10000/default"; // This is for Thrift
-        String jdbcUrl = "jdbc:hive2://localhost:10009/;user=sparkuser"; // This is for Kyuubi
+        String jdbcUrl = "jdbc:hive2://localhost:10000/default"; // This is for Thrift
+        // String jdbcUrl = "jdbc:hive2://localhost:10009/;user=sparkuser"; // This is for Kyuubi
 
         // JDBC credentials (if needed)
         String user = "";

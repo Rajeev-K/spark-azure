@@ -44,5 +44,9 @@ RUN curl -fSL "$AZURE_STORAGE_BLOB_URL" -o /opt/spark/jars/azure-storage-blob-${
 # Change ownership of directories to non-root user
 RUN chown -R sparkuser:sparkgroup /opt/spark
 
+# Make home directory
+RUN mkdir -p /home/sparkuser
+RUN chown sparkuser:sparkgroup /home/sparkuser
+
 # Switch to non-root user
 USER sparkuser
