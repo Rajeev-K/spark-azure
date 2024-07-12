@@ -13,10 +13,6 @@ ENV DELTA_STORAGE_VERSION=2.4.0
 # Switch to root to copy files and set permissions
 USER root
 
-# Create a user and group with specific UID and GID
-RUN groupadd -g 1001 sparkgroup && \
-    useradd -r -u 1001 -g sparkgroup sparkuser
-
 # Create necessary directories and copy configuration files
 RUN mkdir -p /opt/spark/conf /opt/spark/jars
 COPY log4j.properties /opt/spark/conf/log4j.properties
@@ -40,6 +36,10 @@ RUN curl -fSL "$AZURE_STORAGE_BLOB_URL" -o /opt/spark/jars/azure-storage-blob-${
     && curl -fSL "$DELTA_CORE_URL" -o /opt/spark/jars/delta-core_2.12-${DELTA_CORE_VERSION}.jar \
     && curl -fSL "$DELTA_STORAGE_URL" -o /opt/spark/jars/delta-storage-${DELTA_STORAGE_VERSION}.jar \
     || { echo 'Failed to download JAR files'; exit 1; }
+
+# Create a user and group with specific UID and GID
+RUN groupadd -g 1001 sparkgroup && \
+    useradd -r -u 1001 -g sparkgroup sparkuser
 
 # Change ownership of directories to non-root user
 RUN chown -R sparkuser:sparkgroup /opt/spark
