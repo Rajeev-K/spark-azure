@@ -1,4 +1,4 @@
-FROM apache/spark-py:v3.4.0
+FROM apache/spark:3.4.1-python3
 
 # Versions
 ENV AZURE_STORAGE_BLOB_VERSION=12.10.2
@@ -17,9 +17,10 @@ RUN mkdir -p /opt/spark/conf /opt/spark/jars
 COPY log4j.properties /opt/spark/conf/log4j.properties
 
 # Define URLs for JAR files
-ENV AZURE_STORAGE_BLOB_URL=https://repo1.maven.org/maven2/com/azure/azure-storage-blob/${AZURE_STORAGE_BLOB_VERSION}/azure-storage-blob-${AZURE_STORAGE_BLOB_VERSION}.jar
-ENV HADOOP_AZURE_URL=https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-azure/${HADOOP_AZURE_VERSION}/hadoop-azure-${HADOOP_AZURE_VERSION}.jar
-ENV WILDFLY_OPENSSL_URL=https://repo1.maven.org/maven2/org/wildfly/openssl/wildfly-openssl/${WILDFLY_OPENSSL_VERSION}.Final/wildfly-openssl-${WILDFLY_OPENSSL_VERSION}.Final.jar
+ENV MAVEN=https://repo1.maven.org/maven2
+ENV AZURE_STORAGE_BLOB_URL=${MAVEN}/com/azure/azure-storage-blob/${AZURE_STORAGE_BLOB_VERSION}/azure-storage-blob-${AZURE_STORAGE_BLOB_VERSION}.jar
+ENV HADOOP_AZURE_URL=${MAVEN}/org/apache/hadoop/hadoop-azure/${HADOOP_AZURE_VERSION}/hadoop-azure-${HADOOP_AZURE_VERSION}.jar
+ENV WILDFLY_OPENSSL_URL=${MAVEN}/org/wildfly/openssl/wildfly-openssl/${WILDFLY_OPENSSL_VERSION}.Final/wildfly-openssl-${WILDFLY_OPENSSL_VERSION}.Final.jar
 
 # Fetch JAR files
 RUN curl -fSL "$AZURE_STORAGE_BLOB_URL" -o /opt/spark/jars/azure-storage-blob-${AZURE_STORAGE_BLOB_VERSION}.jar \
