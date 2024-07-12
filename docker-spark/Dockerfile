@@ -50,3 +50,5 @@ RUN chown sparkuser:sparkgroup /home/sparkuser
 
 # Switch to non-root user
 USER sparkuser
+
+ENV HADOOP_USER_NAME=sparkuser
