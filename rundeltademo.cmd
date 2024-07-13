@@ -12,4 +12,4 @@ docker run ^
  -e AZURE_STORAGE_ACCOUNT_NAME ^
  -v %SCRIPT_DIR%/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf ^
  -it -v %SCRIPT_DIR%:/files spark-azure /opt/spark/bin/spark-submit ^
- /files/demo.py
+ /files/delta_demo.py
