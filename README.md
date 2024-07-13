@@ -1,5 +1,11 @@
 # Settings to run Spark on Azure
 
+## Setup
+
+Copy `spark-defaults-template.conf` to `spark-defaults.conf` and update it with your Azure Storage account name and access key.
+
+Set environment variable `AZURE_STORAGE_ACCOUNT_NAME` to your storage account name.
+
 ## spark-sql
 
 Run `runsparksql.cmd` then try the following SQL, replacing `container` and `storageaccount` with the names of your container and storage account.
@@ -20,7 +26,7 @@ select * from sales;
 
 ## kyuubi
 
-Copy `spark-defaults-template.conf` to `spark-defaults.conf` and update it with the right Azure Storage account name and access key, then run `runkyuubi.cmd`.
+Run `runkyuubi.cmd`.
 
 You can use beeline to run queries:
 
