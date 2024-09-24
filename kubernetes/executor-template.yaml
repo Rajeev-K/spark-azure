@@ -1,0 +1,7 @@
+# Replace "theacr" with the name of your ACR
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: spark-executor
+    image: theacr.azurecr.io/spark-k8s:latest
