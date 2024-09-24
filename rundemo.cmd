@@ -1,6 +1,16 @@
 @echo off
 setlocal
 
+if "%AZURE_STORAGE_ACCOUNT_NAME%" == "" (
+    echo Set AZURE_STORAGE_ACCOUNT_NAME environment variable to your storage account name.
+    exit /b 1
+)
+
+if not exist spark-defaults.conf (
+    echo Copy spark-defaults-template.conf to spark-defaults.conf and customize it.
+    exit /b 1
+)
+
 REM Get the directory of the script
 set SCRIPT_DIR=%~dp0
 

@@ -20,6 +20,7 @@ df = spark.read.format("delta").load(data_file_path)
 
 # Write the DataFrame to output file
 df.write.mode("overwrite").format("delta").save("/files/output")
+print("Data written to output folder")
 
 # Stop the Spark session
 spark.stop()

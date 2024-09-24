@@ -18,6 +18,7 @@ df = spark.read.csv(csv_path, header=True, inferSchema=True)
 
 # Write the DataFrame to Parquet format
 df.write.mode("overwrite").format("parquet").save("/files/output")
+print("Data written to output folder")
 
 # Stop the Spark session
 spark.stop()
