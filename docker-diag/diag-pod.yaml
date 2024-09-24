@@ -1,0 +1,18 @@
+# Replace "theacr" with the name of your ACR
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: diag
+spec:
+  containers:
+  - name: diag
+    image: theacr.azurecr.io/diag:latest
+    command: ["/bin/bash", "-c", "sleep infinity"]
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "100m"
+      limits:
+        memory: "256Mi"
+        cpu: "500m"

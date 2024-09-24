@@ -6,5 +6,5 @@ if "%ACR%" == "" (
 REM You will need to login into your ACR using the following command:
 REM az acr login -n %ACR%
 
-docker tag spark-k8s:latest %ACR%.azurecr.io/spark-k8s
-docker push %ACR%.azurecr.io/spark-k8s
+docker tag diag:latest %ACR%.azurecr.io/diag
+docker push %ACR%.azurecr.io/diag
