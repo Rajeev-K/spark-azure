@@ -49,3 +49,11 @@ thrift-jdbc-odbc-server-f7179a922a60e981-exec-1   1/1     Running   0          3
 thrift-jdbc-odbc-server-f7179a922a60e981-exec-2   1/1     Running   0          29s
 ```
 
+Review executor pods logs using a command similar to:
+```
+kubectl -n analytics logs thrift-jdbc-odbc-server-f7179a922a60e981-exec-2
+```
+You should see the following snippets somewhere in the logs:
+...Successfully registered with driver...
+...Executor: Starting executor...
+
