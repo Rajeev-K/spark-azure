@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: thrift
+  namespace: analytics
+spec:
+  clusterIP: None # headless service; allows direct communication between the driver and the executors
+  selector:
+    app: thrift
+  ports:
+    - protocol: TCP
+      name: thrift-server-port
+      port: 10000
+      targetPort: 10000
+    - protocol: TCP
+      name: spark-driver-port
+      port: 22321
+      targetPort: 22321
+    - protocol: TCP
+      name: spark-blockmanager-port
+      port: 22322
+      targetPort: 22322
+    - protocol: TCP
+      name: spark-ui-port
+      port: 4040
+      targetPort: 4040

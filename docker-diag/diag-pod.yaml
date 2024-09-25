@@ -16,11 +16,3 @@ spec:
       limits:
         memory: "256Mi"
         cpu: "500m"
-    volumeMounts:
-    - name: spark-executor-template-volume
-      mountPath: /opt/spark/conf/executor-template.yaml
-      subPath: executor-template.yaml
-  volumes:
-  - name: spark-executor-template-volume
-    configMap:
-      name: spark-executor-template

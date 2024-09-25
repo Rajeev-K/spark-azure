@@ -1,0 +1,71 @@
+# Replace "theacr" with the name of your ACR
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: thrift
+  namespace: analytics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: thrift
+  template:
+    metadata:
+      labels:
+        app: thrift
+    spec:
+      serviceAccountName: spark-sa
+      volumes:
+      - name: spark-executor-template-volume
+        configMap:
+          name: spark-executor-template
+      containers:
+      - name: spark
+        image: theacr.azurecr.io/spark-k8s:latest
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: spark-executor-template-volume
+          mountPath: /opt/spark/conf/executor-template.yaml
+          subPath: executor-template.yaml
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "50m"
+        ports:
+        - name: ui
+          containerPort: 4040
+        - name: thrift
+          containerPort: 10000
+        - name: driver-port
+          containerPort: 22321
+        - name: blockmgr-port
+          containerPort: 22322
+        env:
+        - name: SPARK_NO_DAEMONIZE
+          value: "true"
+        - name: HADOOP_USER_NAME
+          value: "sparkuser"
+        command: ["/bin/sh", "-c"]
+        args:
+          - /opt/spark/sbin/start-thriftserver.sh
+            --conf spark.driver.host=thrift
+            --conf spark.driver.port=22321
+            --conf spark.driver.bindAddress=0.0.0.0
+            --conf spark.driver.maxResultSize=2g
+            --conf spark.kubernetes.driver.pod.name=$(hostname)
+            --conf spark.submit.deployMode=client
+            --conf spark.kubernetes.container.image=theacr.azurecr.io/spark-k8s:latest
+            --conf spark.kubernetes.container.imagePullPolicy=always
+            --conf spark.kubernetes.namespace=analytics
+            --conf spark.master=k8s://https://kubernetes.default.svc
+            --conf spark.blockManager.port=22322
+            --conf spark.executor.memory=1G
+            --conf spark.executor.cores=1
+            --conf spark.executor.instances=2
+            --conf spark.kubernetes.executor.podTemplateFile=/opt/spark/conf/executor-template.yaml
+
+
+# --conf spark.driver.host                                   # how executors will reach driver
+# --conf spark.driver.port                                   # how executors will reach driver
+# --conf spark.kubernetes.driver.pod.name=$(hostname)        # needed to garbage collect executor pods
+# --conf spark.submit.deployMode=client                      # thrift requires client mode
