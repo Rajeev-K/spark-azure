@@ -64,8 +64,11 @@ spec:
             --conf spark.executor.instances=2
             --conf spark.kubernetes.executor.podTemplateFile=/opt/spark/conf/executor-template.yaml
 
-
 # --conf spark.driver.host                                   # how executors will reach driver
 # --conf spark.driver.port                                   # how executors will reach driver
 # --conf spark.kubernetes.driver.pod.name=$(hostname)        # needed to garbage collect executor pods
 # --conf spark.submit.deployMode=client                      # thrift requires client mode
+
+# To authenticate to Storage Account using Access key
+# --conf spark.hadoop.fs.azure.account.auth.type.YourStorageAccount.dfs.core.windows.net=SharedKey
+# --conf spark.hadoop.fs.azure.account.key.YourStorageAccount.dfs.core.windows.net=XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
