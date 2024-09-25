@@ -1,4 +1,4 @@
-# Replace "theacr" with the name of your ACR
+# Replace "xxxxx" with the name of your ACR
 
 apiVersion: v1
 kind: Pod
@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: diag
-    image: theacr.azurecr.io/diag:latest
+    image: xxxxx.azurecr.io/diag:latest
     command: ["/bin/bash", "-c", "sleep infinity"]
     resources:
       requests:

@@ -1,8 +1,8 @@
-# Replace "theacr" with the name of your ACR
+# Replace "xxxxx" with the name of your ACR
 # Namespace will be set by spark, so no need to explicitly define namespace
 apiVersion: v1
 kind: Pod
 spec:
   containers:
   - name: spark-executor
-    image: theacr.azurecr.io/spark-k8s:latest
+    image: xxxxx.azurecr.io/spark-k8s:latest

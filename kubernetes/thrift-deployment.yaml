@@ -1,4 +1,4 @@
-# Replace "theacr" with the name of your ACR
+# Replace "xxxxx" with the name of your ACR
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,7 +21,7 @@ spec:
           name: spark-executor-template
       containers:
       - name: spark
-        image: theacr.azurecr.io/spark-k8s:latest
+        image: xxxxx.azurecr.io/spark-k8s:latest
         imagePullPolicy: Always
         volumeMounts:
         - name: spark-executor-template-volume
@@ -54,7 +54,7 @@ spec:
             --conf spark.driver.maxResultSize=2g
             --conf spark.kubernetes.driver.pod.name=$(hostname)
             --conf spark.submit.deployMode=client
-            --conf spark.kubernetes.container.image=theacr.azurecr.io/spark-k8s:latest
+            --conf spark.kubernetes.container.image=xxxxx.azurecr.io/spark-k8s:latest
             --conf spark.kubernetes.container.imagePullPolicy=always
             --conf spark.kubernetes.namespace=analytics
             --conf spark.master=k8s://https://kubernetes.default.svc

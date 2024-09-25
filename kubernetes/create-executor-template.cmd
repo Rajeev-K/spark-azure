@@ -1,2 +1,1 @@
-kubectl create configmap spark-executor-template --from-file=executor-template.yaml -n analytics
-
+kubectl -n analytics create configmap spark-executor-template --from-file=executor-template.yaml
