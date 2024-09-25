@@ -1,3 +1,4 @@
+## Running Spark Thrift on Kubernetes
 
 Set the environment variable ACR to the name of your Azure Container Registry (without the `azurecr.io` part).
 
@@ -6,7 +7,9 @@ Login to your ACR using this command:
  az acr login -n %ACR%
 ```
 
-Run `build-image.cmd` followed by `push-image.cmd`.
+First create the base image by running `build-image.cmd` in `docker-spark` folder.
+
+Then run `build-image.cmd` in `kubernetes` folder, followed by `push-image.cmd`.
 
 Switch to your kubernetes context, for example if your cluster is named `eagle` use this command:
 ```
@@ -58,3 +61,12 @@ You should see the following snippets somewhere in the logs:
 ...Successfully registered with driver...
 ...Executor: Starting executor...
 ```
+
+## Run thrift client
+
+You will first need to port-forward by running this command:
+```
+port-forward.cmd
+```
+
+Now your Spark ODBC/JDBC driver can connect to localhost:10000 to run SQL commands on your Kubernetes cluster.
