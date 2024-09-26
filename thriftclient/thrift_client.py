@@ -1,5 +1,6 @@
 import os
 import pyodbc
+import sys
 
 # This code connects to thrift server, executes a SQL query and prints results.
 # Install ODBC driver from:
@@ -14,7 +15,12 @@ conn_str = (
     'SSL=0;'
 )
 
-account_name = os.getenv('AZURE_STORAGE_ACCOUNT_NAME', 'yourStorageAccount')
+# Set storage variables
+account_name = os.getenv('AZURE_STORAGE_ACCOUNT_NAME')
+if not account_name:
+    print("Error: Environment variable 'AZURE_STORAGE_ACCOUNT_NAME' is not set.")
+    sys.exit(1)
+
 container = "demo"
 path = "sales.csv"
 
