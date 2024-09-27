@@ -27,7 +27,7 @@ Use Service Connector tab of AKS to create a connection to your storage account.
 
 When creating a connection supply the namespace created above. Set Client type to Java. In Authentication tab choose Workload identity.
 
-When the connection is ready get the value of you'll get AZURE_STORAGEBLOB_CLIENTID, this is the clientId of your managed identity.
+When the connection is ready get the value of AZURE_STORAGEBLOB_CLIENTID, this is the clientId of your managed identity.
 
 ### Create Kubernetes resources
 
