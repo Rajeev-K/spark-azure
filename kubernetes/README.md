@@ -31,12 +31,12 @@ When the connection is ready get the value of you'll get AZURE_STORAGEBLOB_CLIEN
 
 ### Create Kubernetes resources
 
-To create executor template, first update the ACR name in `executor-template.yaml` then run this command:
+To create executor template, first **edit executor-template.yaml** and update the ACR name, then run this command:
 ```
 create-executor-template.cmd
 ```
 
-Edit service-account.yaml and update the clientId of managed identity.
+**Edit service-account.yaml** and update the clientId of managed identity.
 
 Create service account, role and role binding using these commands:
 ```
@@ -45,7 +45,7 @@ kubectl apply -f cluster-role.yaml
 kubectl apply -f cluster-role-binding.yaml
 ```
 
-Edit thrift-deployment.yaml and update the ACR, storage account name, and the clientId of your managed identity.
+**Edit thrift-deployment.yaml** and update the ACR, storage account name, and the clientId of your managed identity.
 
 Create thrift service and deployment using these commands:
 ```
