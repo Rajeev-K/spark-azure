@@ -1,8 +1,13 @@
 # Replace "xxxxx" with the name of your ACR
 # Namespace will be set by spark, so no need to explicitly define namespace
+# If not using workload identity remove the corresponding label below
 apiVersion: v1
 kind: Pod
+metadata:
+  labels:
+    azure.workload.identity/use: "true"
 spec:
+  serviceAccountName: spark-sa
   containers:
   - name: spark-executor
     image: xxxxx.azurecr.io/spark-k8s:latest

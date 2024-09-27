@@ -1,4 +1,6 @@
 # Replace "xxxxx" with the name of your ACR
+# Replace YourStorageAccount with the name of your storage account
+# Replace XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX with the clientId of your managed identity (if using Service Connector this is AZURE_STORAGEBLOB_CLIENTID)
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -43,8 +45,6 @@ spec:
         env:
         - name: SPARK_NO_DAEMONIZE
           value: "true"
-        - name: HADOOP_USER_NAME
-          value: "sparkuser"
         command: ["/bin/sh", "-c"]
         args:
           - /opt/spark/sbin/start-thriftserver.sh
@@ -63,6 +63,9 @@ spec:
             --conf spark.executor.cores=1
             --conf spark.executor.instances=2
             --conf spark.kubernetes.executor.podTemplateFile=/opt/spark/conf/executor-template.yaml
+            --conf spark.hadoop.fs.azure.account.auth.type.YourStorageAccount.dfs.core.windows.net=OAuth
+            --conf spark.hadoop.fs.azure.account.oauth.provider.type.YourStorageAccount.dfs.core.windows.net=org.apache.hadoop.fs.azurebfs.oauth2.MsiTokenProvider
+            --conf spark.hadoop.fs.azure.account.oauth2.client.id.YourStorageAccount.dfs.core.windows.net=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 
 # --conf spark.driver.host                                   # how executors will reach driver
 # --conf spark.driver.port                                   # how executors will reach driver
