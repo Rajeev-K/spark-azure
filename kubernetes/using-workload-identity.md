@@ -84,11 +84,11 @@ az role assignment create
   --assignee-object-id 7264fa93-af86-4895-aa75-f1ce0e2e58bb
   --assignee-principal-type ServicePrincipal
   --role "Storage Blob Data Contributor" 
-  --scope /subscriptions/50596385-d995-443a-a98b-9fcfa52f4777/resourceGroups/DefaultResourceGroup-WUS/providers/Microsoft.Storage/storageAccounts/sparkdemo2000
+  --scope /subscriptions/98765432-d995-443a-a98b-9fcfa52f4777/resourceGroups/DefaultResourceGroup-WUS/providers/Microsoft.Storage/storageAccounts/sparkdemo2000
 ```
 
 To verify:
 
 ```
-az role assignment list --assignee 7264fa93-af86-4895-aa75-f1ce0e2e58bb  --scope /subscriptions/50596385-d995-443a-a98b-9fcfa52f4777/resourceGroups/DefaultResourceGroup-WUS/providers/Microsoft.Storage/storageAccounts/sparkdemo2000
+az role assignment list --assignee 7264fa93-af86-4895-aa75-f1ce0e2e58bb  --scope /subscriptions/98765432-d995-443a-a98b-9fcfa52f4777/resourceGroups/DefaultResourceGroup-WUS/providers/Microsoft.Storage/storageAccounts/sparkdemo2000
 ```
